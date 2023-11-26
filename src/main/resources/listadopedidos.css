@@ -1,0 +1,76 @@
+.listadopedidos {
+    -fx-background-image: url("views/img/fondoprincipal.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 20;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+Label {
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-text-fill: black; /* Cambia el color de fuente según tus preferencias */
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
+}
+
+#titulo2 {
+    -fx-font-weight: bold;
+    -fx-font-size: 24; /* Tamaño de fuente diferente */
+    -fx-text-fill: #FFFF66; /* Texto en blanco */
+    -fx-effect: dropshadow(three-pass-box, black, 5, 1, 1, 0); /* Efecto de sombra en negro */
+}
+
+#infoLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: #007acc;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
+
+}
+
+#buttonNuevoPedido {
+    -fx-background-color: #00A65E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonNuevoPedido:hover {
+    -fx-background-color: #A68C66;
+}
+
+#buttonBorrarPedido {
+    -fx-background-color: #D74C3C;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonBorrarPedido:hover {
+    -fx-background-color: #A68C66;
+}
+
+#buttonSalir {
+    -fx-background-color: #D74C3C;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonSalir:hover {
+    -fx-background-color: #A68C66;
+}
+
+#tabla {
+    -fx-selection-bar-non-focused: #FFFF66; /* Color de fondo de la barra de selección no enfocada */
+    -fx-selection-bar: #FFFF66; /* Color de fondo de la barra de selección enfocada */
+    -fx-text-fill: #000000; /* Color del texto en las celdas */
+    -fx-font-size: 14; /* Tamaño de fuente en las celdas */
+}

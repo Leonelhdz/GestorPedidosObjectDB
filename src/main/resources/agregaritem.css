@@ -1,0 +1,68 @@
+.agregaritem {
+    -fx-background-image: url("views/img/fondoprincipal.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 20;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+#spCantidad {
+    -fx-background-color: #E6E6E6; /* Color de fondo del Spinner */
+    -fx-text-fill: #000000; /* Color del texto en el Spinner */
+    -fx-font-size: 14; /* Tamaño de fuente en el Spinner */
+    -fx-pref-width: 100; /* Ancho preferido del Spinner */
+    -fx-pref-height: 30; /* Altura preferida del Spinner */
+}
+
+#comboProducto {
+    -fx-background-color: #E6E6E6; /* Color de fondo del ComboBox */
+    -fx-text-fill: #000000; /* Color del texto en el ComboBox */
+    -fx-font-size: 14; /* Tamaño de fuente en el ComboBox */
+    -fx-pref-width: 200; /* Ancho preferido del ComboBox */
+    -fx-pref-height: 30; /* Altura preferida del ComboBox */
+
+}
+
+#buttonAnterior {
+    -fx-background-color: #00A65E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonAnterior:hover {
+    -fx-background-color: #A68C66;
+}
+
+#buttonAceptar {
+    -fx-background-color: #00A65E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonAceptar:hover {
+    -fx-background-color: #A68C66;
+}
+
+#titulo {
+    -fx-font-weight: bold;
+    -fx-font-size: 24; /* Tamaño de fuente diferente */
+    -fx-text-fill: #FFFF66; /* Texto en blanco */
+    -fx-effect: dropshadow(three-pass-box, black, 5, 1, 1, 0); /* Efecto de sombra en negro */
+}
+
+Label {
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-text-fill: black; /* Cambia el color de fuente según tus preferencias */
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
+}
+
+

@@ -1,0 +1,63 @@
+.login {
+    -fx-background-image: url('views/img/fondoprincipal.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 20;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+TextField, PasswordField {
+    -fx-font-weight: bold;
+    -fx-pref-width: 200;
+    -fx-pref-height: 30;
+    -fx-font-size: 14;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
+}
+
+Label {
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-text-fill: black; /* Cambia el color de fuente según tus preferencias */
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
+}
+
+#titulo {
+    -fx-font-weight: bold;
+    -fx-font-size: 24; /* Tamaño de fuente diferente */
+    -fx-text-fill: #FFFF66; /* Texto en blanco */
+    -fx-effect: dropshadow(three-pass-box, black, 5, 1, 1, 0); /* Efecto de sombra en negro */
+}
+
+#infoLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: #007acc;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 1, 1, 0);
+}
+
+#buttonIngresar {
+    -fx-background-color: #00A65E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonIngresar:hover {
+    -fx-background-color: #007D47;
+}
+
+#buttonCancelar {
+    -fx-background-color: #D74C3C;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonCancelar:hover {
+    -fx-background-color: #A68C66;
+}
