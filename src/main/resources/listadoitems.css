@@ -87,6 +87,16 @@ Label {
     -fx-font-size: 12;
 }
 
+#buttonImprimir {
+    -fx-background-color: #000003;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 12;
+
+}
+
 #buttonActualizar:hover {
     -fx-background-color: #A68C66;
 }

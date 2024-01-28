@@ -8,6 +8,7 @@ module com.example.GestorPedidosHibernate {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires java.sql;
+    requires jasperreports;
 
 
     opens org.example.gestorpedidoshibernate.domain.Usuario;
@@ -20,4 +21,5 @@ module com.example.GestorPedidosHibernate {
 
     exports org.example.gestorpedidoshibernate;
     exports org.example.gestorpedidoshibernate.controllers;
+
 }

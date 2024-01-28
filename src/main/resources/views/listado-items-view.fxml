@@ -45,23 +45,10 @@
                                         <Font size="11.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="buttonAgregarItem" mnemonicParsing="false" onAction="#anhadirItem" text="AÑADIR">
-                           <graphic>
-                              <ImageView fitHeight="13.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/agregar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                                <Button fx:id="buttonBorrar" mnemonicParsing="false" onAction="#borrarItem" text="BORRAR">
-                           <graphic>
-                              <ImageView fitHeight="19.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/borrar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
+                                <Button fx:id="buttonAgregarItem" mnemonicParsing="false" onAction="#anhadirItem" text="AÑADIR" />
                                 <Button fx:id="buttonActualizar" mnemonicParsing="false" onAction="#actualizarPedido" text="ACTUALIZAR" />
+                                <Button fx:id="buttonBorrar" mnemonicParsing="false" onAction="#borrarItem" text="BORRAR" />
+                        <Button fx:id="buttonImprimir" mnemonicParsing="false" onAction="#imprimirInforme" text="IMPRIMIR" textFill="WHITE" />
                             </children>
                             <FlowPane.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -99,7 +86,7 @@
                         <Insets bottom="10.0" left="10.0" right="60.0" top="10.0" />
                     </GridPane.margin>
                     <image>
-                        <Image url="@img/user.png" />
+                        <Image url="@img/usuario.png" />
                     </image>
                 </ImageView>
                 <Button fx:id="buttonSalir" mnemonicParsing="false" onAction="#salir" text="LOGOUT" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -114,7 +101,7 @@
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/borrar.png" />
+                        <Image url="@img/atras.png" />
                      </image>
                   </ImageView>
                </graphic>

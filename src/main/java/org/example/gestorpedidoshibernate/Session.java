@@ -5,6 +5,9 @@ import lombok.Setter;
 import org.example.gestorpedidoshibernate.domain.Items.Item;
 import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
 import org.example.gestorpedidoshibernate.domain.Usuario.Usuario;
+import org.hibernate.Transaction;
+
+import java.sql.Connection;
 
 /**
  * Clase de sesión que almacena información sobre la sesión actual.
@@ -22,5 +25,6 @@ public class Session {
     @Getter
     @Setter
     private static Item currentItem;
+
 
 }

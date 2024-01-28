@@ -4,52 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10070223-4c55-4e76-8a75-6607ffd76417" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/Session.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/controllers/AgregarItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/controllers/ListadoItemsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/controllers/ListadoPedidosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/HibernateUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Items/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Items/ItemDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Pedido/Pedido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Pedido/PedidoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Productos/Productos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Productos/ProductosDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Usuario/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/domain/Usuario/UsuarioDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/agregaritem.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/listadoitems.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/listadopedidos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/agregar-item-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/adelante.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/agregar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/atras.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/borrar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/fondoprincipal.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/informacion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/lightning.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/lista.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/img/usuario.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/listado-items-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/listado-pedido-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/login-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/gestorpedidoshibernate/AppTest.java" afterDir="false" />
+    <list default="true" id="10070223-4c55-4e76-8a75-6607ffd76417" name="Changes" comment="Proyecto Finalizado, JavaDoc incluido">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/controllers/ListadoItemsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gestorpedidoshibernate/controllers/ListadoItemsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/listadoitems.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/listadoitems.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/listado-items-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/listado-items-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/listado-pedido-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/listado-pedido-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,31 +42,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/frans/OneDrive/Escritorio/GestorPedidosHibernate2/src/main/resources/views/img",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/frans/IdeaProjects/GestorPedidosHibernate2&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\frans\OneDrive\Escritorio\GestorPedidosHibernate2\src\main\resources\views\img" />
@@ -151,11 +114,43 @@
       <workItem from="1700925275858" duration="15552000" />
       <workItem from="1700941106117" duration="743000" />
       <workItem from="1700994163038" duration="12893000" />
-      <workItem from="1701010198863" duration="9769000" />
+      <workItem from="1701010198863" duration="10938000" />
+      <workItem from="1701021876715" duration="2103000" />
+      <workItem from="1701104612194" duration="1208000" />
+      <workItem from="1701280050642" duration="1653000" />
+      <workItem from="1701372147538" duration="665000" />
+      <workItem from="1701798247856" duration="1261000" />
+      <workItem from="1701861117987" duration="1302000" />
+      <workItem from="1702063158254" duration="220000" />
+      <workItem from="1705676956142" duration="98000" />
+      <workItem from="1705677446873" duration="1488000" />
+      <workItem from="1705765271676" duration="6418000" />
+      <workItem from="1705856374242" duration="3829000" />
+      <workItem from="1705861207688" duration="8000" />
+      <workItem from="1705945552346" duration="1612000" />
+      <workItem from="1706286077324" duration="5663000" />
+      <workItem from="1706292539978" duration="450000" />
+      <workItem from="1706295045068" duration="221000" />
+      <workItem from="1706463157371" duration="1427000" />
+      <workItem from="1706467728859" duration="761000" />
+      <workItem from="1706470651075" duration="293000" />
     </task>
+    <task id="LOCAL-00001" summary="Proyecto Finalizado, JavaDoc incluido">
+      <option name="closed" value="true" />
+      <created>1701020034726</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701020034726</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Proyecto Finalizado, JavaDoc incluido" />
+    <option name="LAST_COMMIT_MESSAGE" value="Proyecto Finalizado, JavaDoc incluido" />
   </component>
 </project>
