@@ -1,0 +1,8 @@
+module:com.example.GestorPedidosHibernate
+org.example.gestorpedidoshibernate
+org.example.gestorpedidoshibernate.controllers
+org.example.gestorpedidoshibernate.domain
+org.example.gestorpedidoshibernate.domain.Items
+org.example.gestorpedidoshibernate.domain.Pedido
+org.example.gestorpedidoshibernate.domain.Productos
+org.example.gestorpedidoshibernate.domain.Usuario
