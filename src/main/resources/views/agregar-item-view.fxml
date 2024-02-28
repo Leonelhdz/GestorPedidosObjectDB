@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxWidth="500.0" prefHeight="407.0" prefWidth="228.0" styleClass="agregaritem" stylesheets="@../agregaritem.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestorpedidoshibernate.controllers.AgregarItemController">
+<BorderPane maxWidth="500.0" prefHeight="407.0" prefWidth="228.0" styleClass="agregaritem" stylesheets="@css/agregaritem.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestorpedidoshibernate.controllers.AgregarItemController">
     <center>
         <VBox id="contenedor" alignment="CENTER" prefHeight="452.0" prefWidth="264.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>

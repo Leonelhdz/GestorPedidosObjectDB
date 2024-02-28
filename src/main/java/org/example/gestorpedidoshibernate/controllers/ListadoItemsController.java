@@ -7,15 +7,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 import org.example.gestorpedidoshibernate.App;
 import org.example.gestorpedidoshibernate.Session;
 import org.example.gestorpedidoshibernate.domain.Items.Item;
 import org.example.gestorpedidoshibernate.domain.Items.ItemDAO;
 import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
 import org.example.gestorpedidoshibernate.domain.Pedido.PedidoDAO;
-
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -36,13 +45,7 @@ public class ListadoItemsController implements Initializable {
     @javafx.fxml.FXML
     private TableColumn<Item, String> columnIdProducto;
     @javafx.fxml.FXML
-    private Label labelCodigo;
-    @javafx.fxml.FXML
-    private Label labelTotal;
-    @javafx.fxml.FXML
     private Button buttonBorrar;
-    @javafx.fxml.FXML
-    private Label infoDetalle;
     @FXML
     private Button buttonActualizar;
     @FXML
@@ -59,6 +62,8 @@ public class ListadoItemsController implements Initializable {
 
     // Lista observable para la tabla de ítems
     private ObservableList<Item> observableList;
+    @FXML
+    private Button buttonImprimir;
 
     /**
      * Inicializa el controlador después de que se ha cargado el archivo FXML.
@@ -110,12 +115,8 @@ public class ListadoItemsController implements Initializable {
      */
     @javafx.fxml.FXML
     public void salir(ActionEvent actionEvent) {
-        Session.setCurrentUsuario(null);
-        try {
-            App.changeScene("login-view.fxml", "Login");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Stage stage = (Stage) buttonSalir.getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -125,11 +126,7 @@ public class ListadoItemsController implements Initializable {
      */
     @javafx.fxml.FXML
     public void retroceder(ActionEvent actionEvent) {
-        try {
-            App.changeScene("listado-pedido-view.fxml", "Listado de Pedidos");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        App.ventanaDatos("/views/listado-pedido-view.fxml");
     }
 
     /**
@@ -161,7 +158,7 @@ public class ListadoItemsController implements Initializable {
         // Establece el ítem recién creado en la sesión actual para su posterior uso.
         Session.setCurrentItem(item);
         //Lleva a la pantalla de AgregarItemController.
-        App.changeScene("agregar-item-view.fxml", "Añadir nuevo Item");
+        App.ventanaDatos("/views/agregar-item-view.fxml");
     }
 
     /**
@@ -197,7 +194,6 @@ public class ListadoItemsController implements Initializable {
             alert.setContentText("Selecciona un item para eliminar");
             alert.showAndWait();
         }
-
     }
     /**
      * Calcula el total de un pedido restando el precio de los productos eliminados.
@@ -232,4 +228,59 @@ public class ListadoItemsController implements Initializable {
         }
     }
 
+    /**
+     * Genera y muestra un informe en formato PDF basado en un archivo JasperReport (.jrxml y .jasper),
+     * utilizando los datos de un pedido actualmente seleccionado en la sesión. El informe contiene
+     * información específica de la empresa y del pedido, y se guarda en una ubicación predefinida.
+     *
+     * @param actionEvent Objeto que representa un evento de acción, generalmente asociado a la
+     *                    interacción del usuario con la interfaz gráfica.
+     * @throws SQLException Si ocurre algún error relacionado con la manipulación de la base de datos.
+     */
+    @FXML
+    public void imprimirInforme(ActionEvent actionEvent) throws SQLException {
+        Connection conexionbd = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionpedidos", "root", "");
+        String codpedido = Session.getCurrentPedido().getCodigo();
+        System.out.println(codpedido);
+
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nombreEmpresa", "Thunder S.A.");
+        parametros.put("codpedido", codpedido);
+
+        try {
+            String rutaJrxml = "C:\\Users\\frans\\JaspersoftWorkspace\\InformePedidos\\informepedido.jrxml";
+            String rutaJasper = "C:\\Users\\frans\\JaspersoftWorkspace\\InformePedidos\\informepedido.jasper";
+
+            if (!Files.exists(Paths.get(rutaJasper))) {
+                JasperCompileManager.compileReportToFile(rutaJrxml);
+            }
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(rutaJasper, parametros, conexionbd);
+
+            String nombreArchivoPDF = "informe_" + codpedido + ".pdf";
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\frans\\Downloads\\Informes\\" + nombreArchivoPDF);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            // Cerrar la conexión después de su uso
+            if (conexionbd != null) {
+                try {
+                    conexionbd.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
 }
+
+
+
+

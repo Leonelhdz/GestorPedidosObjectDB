@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.gestorpedidoshibernate.domain.Items.Item;
 import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
+import org.example.gestorpedidoshibernate.domain.Productos.Productos;
 import org.example.gestorpedidoshibernate.domain.Usuario.Usuario;
 
 /**
@@ -22,5 +23,10 @@ public class Session {
     @Getter
     @Setter
     private static Item currentItem;
+
+    @Getter
+    @Setter
+    private static Productos currentProducto;
+
 
 }

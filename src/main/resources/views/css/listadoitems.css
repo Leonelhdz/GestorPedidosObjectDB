@@ -1,5 +1,5 @@
-.listadopedidos {
-    -fx-background-image: url("views/img/fondoprincipal.jpg");
+.listadoitem {
+    -fx-background-image: url('../img/fondoprincipal.jpg');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -15,21 +15,14 @@ Label {
     -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
 }
 
-#titulo2 {
+#titulo3 {
     -fx-font-weight: bold;
     -fx-font-size: 24; /* Tamaño de fuente diferente */
     -fx-text-fill: #FFFF66; /* Texto en blanco */
     -fx-effect: dropshadow(three-pass-box, black, 5, 1, 1, 0); /* Efecto de sombra en negro */
 }
 
-#infoLabel {
-    -fx-font-weight: bold;
-    -fx-text-fill: #007acc;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 5, 5, 5, 0);
-
-}
-
-#buttonNuevoPedido {
+#buttonAnterior {
     -fx-background-color: #00A65E;
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -38,21 +31,9 @@ Label {
     -fx-font-size: 16;
 }
 
-#buttonNuevoPedido:hover {
+#buttonAnterior:hover {
     -fx-background-color: #A68C66;
-}
 
-#buttonBorrarPedido {
-    -fx-background-color: #D74C3C;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-pref-width: 120;
-    -fx-pref-height: 40;
-    -fx-font-size: 16;
-}
-
-#buttonBorrarPedido:hover {
-    -fx-background-color: #A68C66;
 }
 
 #buttonSalir {
@@ -66,6 +47,58 @@ Label {
 
 #buttonSalir:hover {
     -fx-background-color: #A68C66;
+
+}
+
+#buttonAgregarItem {
+    -fx-background-color: #00A65E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonSalir:hover {
+    -fx-background-color: #A68C66;
+
+}
+
+#buttonBorrar {
+    -fx-background-color: #D74C3C;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 16;
+}
+
+#buttonBorrar:hover {
+    -fx-background-color: #A68C66;
+
+}
+
+#buttonActualizar {
+    -fx-background-color: #00A65E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 12;
+}
+
+#buttonImprimir {
+    -fx-background-color: #000003;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 40;
+    -fx-font-size: 12;
+
+}
+
+#buttonActualizar:hover {
+    -fx-background-color: #A68C66;
 }
 
 #tabla {
@@ -74,3 +107,4 @@ Label {
     -fx-text-fill: #000000; /* Color del texto en las celdas */
     -fx-font-size: 14; /* Tamaño de fuente en las celdas */
 }
+

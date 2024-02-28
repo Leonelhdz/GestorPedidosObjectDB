@@ -1,11 +1,13 @@
 package org.example.gestorpedidoshibernate.domain.Productos;
 
+import org.example.gestorpedidoshibernate.ObjectDBUtil;
 import org.example.gestorpedidoshibernate.domain.DAO;
-import org.example.gestorpedidoshibernate.domain.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementación de la interfaz DAO para la entidad Productos.
@@ -20,9 +22,12 @@ public class ProductosDAO implements DAO<Productos> {
     @Override
     public ArrayList<Productos> getAll() {
         var salida = new ArrayList<Productos>(0);
-        try (Session sesion = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Productos> query = sesion.createQuery("from Productos", Productos.class);
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try{
+            TypedQuery<Productos> query = entityManager.createQuery("select p from Productos p", Productos.class);
             salida = (ArrayList<Productos>) query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return salida;
     }
@@ -33,7 +38,7 @@ public class ProductosDAO implements DAO<Productos> {
      * @return El producto con el identificador especificado.
      */
     @Override
-    public Productos get(Integer id) {
+    public Productos get(Long id) {
         return null;
     }
     /**
@@ -52,7 +57,8 @@ public class ProductosDAO implements DAO<Productos> {
      * @param data Datos del producto a actualizar.
      */
     @Override
-    public void update(Productos data) {
+    public Pedido update(Productos data) {
+        return null;
     }
     /**
      * Método de eliminación que no está implementado en este contexto.
@@ -60,7 +66,20 @@ public class ProductosDAO implements DAO<Productos> {
      * @param data Datos del producto a eliminar.
      */
     @Override
-    public void delete(Productos data) {
+    public boolean delete(Productos data) {
+        return false;
+    }
 
+    public void saveAll(List<Productos> data) {
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            for (Productos pr : data) {
+                entityManager.persist(pr);
+            }
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+        }
     }
 }

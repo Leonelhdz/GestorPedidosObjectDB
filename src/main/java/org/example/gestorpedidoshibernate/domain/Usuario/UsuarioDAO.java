@@ -1,11 +1,14 @@
 package org.example.gestorpedidoshibernate.domain.Usuario;
 
+import org.example.gestorpedidoshibernate.ObjectDBUtil;
 import org.example.gestorpedidoshibernate.domain.DAO;
-import org.example.gestorpedidoshibernate.domain.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementación de la interfaz DAO para la entidad Usuario.
@@ -22,18 +25,19 @@ public class UsuarioDAO implements DAO<Usuario> {
      */
     public Usuario validateUser(String user, String pass) {
         Usuario result = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // Consulta HQL para obtener un Usuario por nombre de usuario y contraseña.
-            Query<Usuario> q = session.createQuery("from Usuario where nombre=:n and contrasena=:c", Usuario.class);
-            q.setParameter("n", user);
-            q.setParameter("c", pass);
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<Usuario> q = entityManager.createQuery("select u from Usuario u where u.nombre=:u and u.contrasena=:p", Usuario.class);
+            q.setParameter("u", user);
+            q.setParameter("p", pass);
 
             try {
-                // Intenta obtener un único resultado (debería ser único, ya que se espera un solo usuario).
                 result = q.getSingleResult();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        } finally {
+
         }
         return result;
     }
@@ -46,11 +50,12 @@ public class UsuarioDAO implements DAO<Usuario> {
     @Override
     public ArrayList<Usuario> getAll() {
         var salida = new ArrayList<Usuario>(0);
+        EntityManager s = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<Usuario> query = s.createQuery("Select u from Usuario u", Usuario.class);
+            salida = (ArrayList<Usuario>) query.getResultList();
+        }finally {
 
-        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-            // Consulta HQL para obtener todos los usuarios.
-            Query<Usuario> q = s.createQuery("from Usuario", Usuario.class);
-            salida = (ArrayList<Usuario>) q.getResultList();
         }
         return salida;
     }
@@ -62,12 +67,18 @@ public class UsuarioDAO implements DAO<Usuario> {
      * @return El usuario con el identificador especificado.
      */
     @Override
-    public Usuario get(Integer id) {
-        var salida = new Usuario();
-
-        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-            // Obtiene un usuario por su identificador único.
-            salida = s.get(Usuario.class, id);
+    public Usuario get(Long id) {
+        Usuario salida = null;
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try{
+            TypedQuery<Usuario> query = entityManager.createQuery("select u from Usuario u where u.id = :id", Usuario.class);
+            query.setParameter("id", id);
+            var resultado = query.getResultList();
+            if (resultado.size() > 0) {
+                salida = resultado.get(0);
+            }
+        } finally {
+            entityManager.close();
         }
         return salida;
     }
@@ -89,8 +100,21 @@ public class UsuarioDAO implements DAO<Usuario> {
      * @param data Datos del usuario a actualizar.
      */
     @Override
-    public void update(Usuario data) {
-
+    public Pedido update(Usuario data) {
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            // Utiliza el método merge para actualizar la entidad en la base de datos.
+            data = entityManager.merge(data);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            // Maneja la excepción adecuadamente (puede imprimir o lanzar una excepción personalizada).
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+        return null;
     }
 
     /**
@@ -99,8 +123,43 @@ public class UsuarioDAO implements DAO<Usuario> {
      * @param data Datos del usuario a eliminar.
      */
     @Override
-    public void delete(Usuario data) {
+    public boolean delete(Usuario data) {
+        return false;
+    }
 
+    public Usuario getUserByEmail(String email) {
+        Usuario result = null;
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try  {
+            TypedQuery<Usuario> query = entityManager.createQuery("Select u from Usuario u where u.email=:e", Usuario.class);
+            query.setParameter("e", email);
+
+            try {
+                result = query.getSingleResult();
+            } catch (NoResultException e) {
+                // No se encontró ningún usuario con ese correo electrónico
+                System.out.println("Usuario no encontrado para el correo electrónico: " + email);
+            } catch (Exception e) {
+                // Otra excepción
+                System.out.println("Error al buscar usuario por correo electrónico: " + e.getMessage());
+            }
+        }finally {
+
+        }
+        return result;
+    }
+
+    public void saveAll(List<Usuario> data) {
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            for (Usuario u : data) {
+                entityManager.persist(u);
+            }
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+        }
     }
 
 }

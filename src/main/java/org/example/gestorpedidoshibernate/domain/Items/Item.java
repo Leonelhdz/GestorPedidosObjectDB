@@ -1,10 +1,11 @@
 package org.example.gestorpedidoshibernate.domain.Items;
 
-import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
 import org.example.gestorpedidoshibernate.domain.Productos.Productos;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -13,30 +14,29 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "itemspedido")
+@NoArgsConstructor
 public class Item implements Serializable {
     /**
      * Identificador único para cada ítem, generado automáticamente.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue
+    private Long id;
+
     /**
      * Pedido asociado al ítem mediante una relación muchos a uno.
      */
     @ManyToOne
-    @JoinColumn(name = "CodigoPedido", referencedColumnName = "Codigo")
     private Pedido codigo;
     /**
      * Cantidad del producto en el ítem.
      */
-    @Column(name = "Cantidad")
-    private Integer cantidad;
+
+    private int cantidad;
     /**
      * Producto asociado al ítem mediante una relación uno a uno.
      */
     @OneToOne
-    @JoinColumn(name = "ProductoId")
     private Productos productos;
     /**
      * Representación en cadena del ítem.

@@ -113,7 +113,7 @@ public class AgregarItemController implements Initializable {
             Session.setCurrentItem((new ItemDAO()).save(item));
             Session.setCurrentItem(item);
 
-            App.changeScene("listado-items-view.fxml", "Detalle Items");
+            App.ventanaDatos("/views/listado-items-view.fxml");
         }
     }
 
@@ -125,9 +125,8 @@ public class AgregarItemController implements Initializable {
      */
     @Deprecated
     public void logOut(ActionEvent actionEvent) throws IOException {
-        //Se settea el usuario actual a null y vuelve al LoginController.
-        Session.setCurrentUsuario(null);
-        App.changeScene("login-view.fxml", "Login");
+        App.ventanaPrincipal("/views/login-view.fxml", "Tabla de pedidos");
+        App.mystage.setTitle("Login");
     }
 
     /**
@@ -154,7 +153,7 @@ public class AgregarItemController implements Initializable {
     @Deprecated
     public void volverAtrás(ActionEvent actionEvent) throws IOException {
         //Vuelve a la pantalla inmediatamente anterior.
-        App.changeScene("listado-items-view.fxml", "Detalle Items");
+        App.ventanaDatos("/views/listado-items-view.fxml");
     }
 
 }

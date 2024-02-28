@@ -1,8 +1,8 @@
 package org.example.gestorpedidoshibernate.domain.Productos;
-
-import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -11,8 +11,15 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "productos")
+@NoArgsConstructor
 public class Productos implements Serializable {
+
+    public Productos(String nombreProducto, Double precio, Integer cantDisponible) {
+        NombreProducto = nombreProducto;
+        Precio = precio;
+        CantDisponible = cantDisponible;
+    }
+
     /**
      * Identificador único para cada producto, generado automáticamente.
      */
@@ -22,26 +29,30 @@ public class Productos implements Serializable {
     /**
      * Nombre del producto.
      */
-    @Column(name = "NombreProducto")
     private String NombreProducto;
     /**
      * Precio del producto.
      */
-    @Column(name = "Precio")
     private Double Precio;
     /**
      * Cantidad disponible del producto.
      */
-    @Column(name = "CantDisponible")
     private Integer CantDisponible;
+
+
     /**
      * Devuelve una representación en cadena del producto (en este caso, el nombre del producto).
      *
      * @return Nombre del producto.
      */
+
     @Override
     public String toString() {
-        return NombreProducto;
+        return "Productos{" +
+                "Id=" + Id +
+                ", NombreProducto='" + NombreProducto + '\'' +
+                ", Precio=" + Precio +
+                ", CantDisponible=" + CantDisponible +
+                '}';
     }
-
 }

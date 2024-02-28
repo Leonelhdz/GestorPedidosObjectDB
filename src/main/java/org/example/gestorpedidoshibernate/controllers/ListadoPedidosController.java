@@ -9,16 +9,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
 import org.example.gestorpedidoshibernate.App;
 import org.example.gestorpedidoshibernate.Session;
 import org.example.gestorpedidoshibernate.domain.Items.Item;
 import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
 import org.example.gestorpedidoshibernate.domain.Pedido.PedidoDAO;
+import org.example.gestorpedidoshibernate.domain.Usuario.Usuario;
 import org.example.gestorpedidoshibernate.domain.Usuario.UsuarioDAO;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -87,7 +91,7 @@ public class ListadoPedidosController implements Initializable {
         });
 
         columnUsuarioId.setCellValueFactory((fila) -> {
-            return new SimpleStringProperty(fila.getValue().getUsuario() + "");
+            return new SimpleStringProperty(fila.getValue().getUsuario().getNombre() + "");
         });
 
         columnTotal.setCellValueFactory((fila) -> {
@@ -112,11 +116,7 @@ public class ListadoPedidosController implements Initializable {
                 Pedido selectedPedido = tabla.getSelectionModel().getSelectedItem();
                 if (selectedPedido != null) {
                     Session.setCurrentPedido(selectedPedido);
-                    try {
-                        App.changeScene("listado-items-view.fxml", "Items Pedido");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    App.ventanaDatos("/views/listado-items-view.fxml");
                 }
 
             }
@@ -161,12 +161,8 @@ public class ListadoPedidosController implements Initializable {
      */
     @javafx.fxml.FXML
     public void salir(ActionEvent actionEvent) {
-        Session.setCurrentUsuario(null);
-        try {
-            App.changeScene("login-view.fxml", "Login");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Stage stage = (Stage) buttonSalir.getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -176,27 +172,29 @@ public class ListadoPedidosController implements Initializable {
      * @throws IOException Si ocurre un error al cambiar la escena.
      */
     @javafx.fxml.FXML
-    public void nuevoPedidoVacio(ActionEvent actionEvent) throws IOException {
-        // Lógica para crear un nuevo pedido
+    public void nuevoPedidoVacio(ActionEvent actionEvent){
         Pedido nuevoPedido = new Pedido();
-        //añadimos la fecha de hoy al pedido
-        nuevoPedido.setFecha(LocalDate.now() + "");
-
-        PedidoDAO pedidoDAO = new PedidoDAO();
-
-        String ultimoCodigo = pedidoDAO.getUltimoCodigo();
-        int ultimoNum = Integer.parseInt(ultimoCodigo.substring(4));
-        int nuevoNum = ultimoNum + 1;
-        String nuevoCodigo = "PED-" + String.format("%03d", nuevoNum);
-        nuevoPedido.setCodigo(nuevoCodigo);
+        nuevoPedido.setCodigo(pedidoDAO.getUltimoCodigo());
+        nuevoPedido.setFecha(new Date());
         nuevoPedido.setUsuario(Session.getCurrentUsuario());
-        Double total = pedidoDAO.calcularTotalPedido(nuevoPedido.getItems());
-        nuevoPedido.setTotal(total);
+        nuevoPedido.setItems(new ArrayList<>());
+        nuevoPedido.setTotal(0.0);
 
-        tabla.getItems().add(nuevoPedido);
+        // Obtener la lista actual de pedidos de la tabla
+        ObservableList<Pedido> pedidosActuales = tabla.getItems();
 
-        //guardamos el pedido en la base de datos
-        Session.setCurrentPedido((new PedidoDAO()).save(nuevoPedido));
+        // Agregar el nuevo pedido a la lista
+        pedidosActuales.add(nuevoPedido);
+
+        // Establecer la lista actualizada de pedidos en la tabla
+        tabla.setItems(pedidosActuales);
+
+        // Guardar el nuevo pedido en la base de datos
+        PedidoDAO pedidoDAO = new PedidoDAO();
+        pedidoDAO.save(nuevoPedido);
+
+        // Actualizar el usuario actual en SessionData
+        Session.setCurrentUsuario((new UsuarioDAO().get(Session.getCurrentUsuario().getId())));
     }
 
     /**

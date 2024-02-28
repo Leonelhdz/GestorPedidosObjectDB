@@ -1,12 +1,12 @@
 package org.example.gestorpedidoshibernate.domain.Pedido;
 
+import org.example.gestorpedidoshibernate.ObjectDBUtil;
 import org.example.gestorpedidoshibernate.domain.DAO;
-import org.example.gestorpedidoshibernate.domain.HibernateUtil;
 import org.example.gestorpedidoshibernate.domain.Items.Item;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+import org.example.gestorpedidoshibernate.domain.Usuario.Usuario;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +23,12 @@ public class PedidoDAO implements DAO<Pedido> {
     @Override
     public ArrayList<Pedido> getAll() {
         var salida = new ArrayList<Pedido>(0);
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Pedido> query = session.createQuery("from Pedido", Pedido.class);
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<Pedido> query = entityManager.createQuery("select p from Pedido p", Pedido.class);
             salida = (ArrayList<Pedido>) query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return salida;
     }
@@ -36,11 +39,18 @@ public class PedidoDAO implements DAO<Pedido> {
      * @return El pedido con el identificador especificado.
      */
     @Override
-    public Pedido get(Integer id) {
-        var salida = new Pedido();
-
-        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-            salida = s.get(Pedido.class, id);
+    public Pedido get(Long id) {
+        Pedido salida = null;
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try{
+            TypedQuery<Pedido> query = entityManager.createQuery("select ped from Pedido ped where ped.id = :id", Pedido.class);
+            query.setParameter("id", id);
+            var resultado = query.getResultList();
+            if (resultado.size() > 0) {
+                salida = resultado.get(0);
+            }
+        } finally {
+            entityManager.close();
         }
         return salida;
     }
@@ -52,16 +62,14 @@ public class PedidoDAO implements DAO<Pedido> {
      */
     @Override
     public Pedido save(Pedido data) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.persist(data);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(data);
+            entityManager.flush();
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
         }
         return data;
     }
@@ -71,24 +79,21 @@ public class PedidoDAO implements DAO<Pedido> {
      * @param data Datos del pedido a actualizar.
      */
     @Override
-    public void update(Pedido data) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
+    public Pedido update(Pedido data) {
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
         try {
-            transaction = session.beginTransaction();
-
-            session.update(data);
-
-            transaction.commit();
+            entityManager.getTransaction().begin();
+            // Utiliza el método merge para actualizar la entidad en la base de datos.
+            data = entityManager.merge(data);
+            entityManager.getTransaction().commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+            // Maneja la excepción adecuadamente (puede imprimir o lanzar una excepción personalizada).
             e.printStackTrace();
+            entityManager.getTransaction().rollback();
         } finally {
-            session.close();
+            entityManager.close();
         }
+        return data;
     }
     /**
      * Elimina un pedido de la base de datos.
@@ -96,11 +101,25 @@ public class PedidoDAO implements DAO<Pedido> {
      * @param data Datos del pedido a eliminar.
      */
     @Override
-    public void delete(Pedido data) {
-        HibernateUtil.getSessionFactory().inTransaction(session -> {
-            Pedido pedido = session.get(Pedido.class, data.getId());
-            session.remove(pedido);
-        });
+    public boolean delete(Pedido data) {
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            // Si la entidad no está gestionada, primero la adjuntamos al contexto de persistencia.
+            if (!entityManager.contains(data)) {
+                data = entityManager.merge(data);
+            }
+            entityManager.remove(data);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+        } finally {
+            entityManager.close();
+        }
+        return false;
     }
 
     /**
@@ -109,28 +128,36 @@ public class PedidoDAO implements DAO<Pedido> {
      * @return El último código de pedido.
      */
     public String getUltimoCodigo() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<String> query = session.createQuery("select max(p.codigo) from Pedido p", String.class);
-            return query.uniqueResult();
+        EntityManager session = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<String> query = session.createQuery("select max(p.codigo) from Pedido p", String.class);
+            String ultimoCodigo = query.getSingleResult();
+            if (ultimoCodigo == null) {
+                // No hay códigos anteriores, inicia desde PED-001
+                return "PED-001";
+            } else {
+                int ultimoNumero = Integer.parseInt(ultimoCodigo.substring(4));
+                int nuevoNumero = ultimoNumero + 1;
+                return "PED-" + String.format("%03d", nuevoNumero);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error al obtener el último código", e);
+            // Manejo de errores
+            throw new RuntimeException("Error al generar el código de pedido", e);
         }
     }
 
-    /**
-     * Calcula el total de un pedido sumando los precios de los ítems asociados.
-     *
-     * @param items Lista de ítems asociados al pedido.
-     * @return El total del pedido.
-     */
-    public Double calcularTotalPedido(List<Item> items) {
-        Double total = 0.0;
-
-        for (Item item : items) {
-            total += item.getProductos().getPrecio();
+    public double calcularTotalPedido(Usuario usuario) {
+        EntityManager entityManager = ObjectDBUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            TypedQuery<Double> query = entityManager.createQuery("select sum(p.total) from Pedido p where p.usuario = :usuario", Double.class);
+            query.setParameter("usuario", usuario);
+            Double total = query.getSingleResult();
+            return total != null ? total.doubleValue() : 0.0; // Maneja el caso en que total sea null
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejo de errores
+            throw new RuntimeException("Error al obtener el total de los pedidos", e);
         }
-
-        return total;
     }
 }

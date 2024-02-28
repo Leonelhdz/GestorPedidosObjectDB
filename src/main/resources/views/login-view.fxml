@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxWidth="500.0" prefHeight="407.0" prefWidth="228.0"
-            stylesheets="@../login.css" xmlns="http://javafx.com/javafx/21"
-            fx:controller="org.example.gestorpedidoshibernate.controllers.LoginController">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxWidth="516.0" prefHeight="580.0" prefWidth="516.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.gestorpedidoshibernate.controllers.LoginController">
     <center>
-        <VBox alignment="CENTER" prefHeight="452.0" prefWidth="264.0" spacing="15.0" styleClass="login" stylesheets=""
-              BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="452.0" prefWidth="264.0" spacing="15.0" styleClass="login" stylesheets="" BorderPane.alignment="CENTER">
             <children>
                 <Label fx:id="titulo" text="GESTIÓN DE PEDIDOS">
                     <font>
-                        <Font name="Georgia Pro Bold" size="14.0"/>
+                        <Font name="Georgia Pro Bold" size="14.0" />
                     </font>
                 </Label>
                 <FlowPane alignment="CENTER">
                     <children>
                         <ImageView fitHeight="80.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@img/lightning.png"/>
+                                <Image url="@img/lightning.png" />
                             </image>
                         </ImageView>
                         <Label fx:id="titulo1" text=" THUNDER EXPRESS">
                             <font>
-                                <Font name="Georgia Pro Bold" size="14.0"/>
+                                <Font name="Georgia Pro Bold" size="14.0" />
                             </font>
                         </Label>
                         <ImageView fitHeight="80.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@img/lightning.png"/>
+                                <Image url="@img/lightning.png" />
                             </image>
                         </ImageView>
                     </children>
@@ -41,44 +45,39 @@
                     <VBox alignment="CENTER" spacing="10">
                         <Label text="USUARIO">
                             <font>
-                                <Font name="Georgia Pro Bold" size="14.0"/>
+                                <Font name="Georgia Pro Bold" size="14.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="nombreUsuarioField" alignment="TOP_LEFT" onAction="#buttonIngresarOnAction"
-                                   prefHeight="26.0" prefWidth="173.0" promptText="Nombre de usuario" text="carlos">
+                        <TextField fx:id="nombreUsuarioField" alignment="TOP_LEFT" onAction="#buttonIngresarOnAction" prefHeight="26.0" prefWidth="173.0" promptText="Nombre de usuario" text="Carlos">
                             <VBox.margin>
-                                <Insets left="30.0" right="30.0"/> <!-- Ajusta los márgenes para centrar -->
+                                <Insets left="30.0" right="30.0" /> <!-- Ajusta los márgenes para centrar -->
                             </VBox.margin>
                         </TextField>
                         <Label text="CONTRASEÑA">
                             <font>
-                                <Font name="Georgia Pro Bold" size="14.0"/>
+                                <Font name="Georgia Pro Bold" size="14.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="contrasenaField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="173.0"
-                                       promptText="Contraseña" text="0000">
+                        <PasswordField fx:id="contrasenaField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="173.0" promptText="Contraseña" text="12345">
                             <VBox.margin>
-                                <Insets left="30.0" right="30.0"/> <!-- Ajusta los márgenes para centrar -->
+                                <Insets left="30.0" right="30.0" /> <!-- Ajusta los márgenes para centrar -->
                             </VBox.margin>
                         </PasswordField>
                     </VBox>
                 </HBox>
-                <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="270.0"
-                       textFill="#000000">
+                <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="270.0" textFill="#000000">
                     <font>
-                        <Font name="System Bold" size="11.0"/>
+                        <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Button fx:id="buttonIngresar" mnemonicParsing="false" onAction="#buttonIngresarOnAction"
-                        prefHeight="23.0" prefWidth="158.0" text="INGRESAR">
+                <Button fx:id="buttonIngresar" mnemonicParsing="false" onAction="#buttonIngresarOnAction" prefHeight="23.0" prefWidth="158.0" text="INGRESAR">
                     <font>
-                        <Font name="Georgia Pro Black" size="13.0"/>
+                        <Font name="Georgia Pro Black" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonCancelar" mnemonicParsing="false" onAction="#buttonCancelarOnAction"
-                        prefHeight="23.0" prefWidth="160.0" text="CANCELAR">
+                <Button fx:id="buttonCancelar" mnemonicParsing="false" onAction="#buttonCancelarOnAction" prefHeight="23.0" prefWidth="160.0" text="CANCELAR">
                     <font>
-                        <Font name="Georgia Pro Black" size="13.0"/>
+                        <Font name="Georgia Pro Black" size="13.0" />
                     </font>
                 </Button>
             </children>

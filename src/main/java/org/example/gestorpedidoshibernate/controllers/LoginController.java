@@ -95,13 +95,9 @@ public class LoginController implements Initializable {
                 // Establece el usuario actual en la sesión
                 Session.setCurrentUsuario(u);
 
-                try {
-                    // Cambia a la escena de listado de pedidos
-                    App.changeScene("listado-pedido-view.fxml", "Listado Pedidos");
+                // Cambia a la escena de listado de pedidos
+                App.ventanaPrincipal("/views/listado-pedido-view.fxml", "Listado Pedidos");
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
             }
         }
 

@@ -1,5 +1,7 @@
 package org.example.gestorpedidoshibernate.domain;
 
+import org.example.gestorpedidoshibernate.domain.Pedido.Pedido;
+
 import java.util.ArrayList;
 
 /**
@@ -21,7 +23,7 @@ public interface DAO<T> {
      * @param id Identificador único del elemento.
      * @return El elemento de la entidad correspondiente al identificador proporcionado, o null si no se encuentra.
      */
-    public T get(Integer id);
+    public T get(Long id);
 
     /**
      * Guarda un nuevo elemento de la entidad en la base de datos.
@@ -36,12 +38,12 @@ public interface DAO<T> {
      *
      * @param data El elemento de la entidad que se va a actualizar.
      */
-    public void update(T data);
+    public Pedido update(T data);
 
     /**
      * Elimina un elemento existente de la entidad de la base de datos.
      *
      * @param data El elemento de la entidad que se va a eliminar.
      */
-    public void delete(T data);
+    public boolean delete(T data);
 }
